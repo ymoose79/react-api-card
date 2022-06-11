@@ -18,11 +18,10 @@ const StudentCard = (student) => {
 
     return (
         <div className='border-bottom'>
-            <div className="card mx-auto bg-light" style={{ maxWidth: "640px" }}>
+            <div className="card mx-auto bg-light border-light" style={{ maxWidth: "640px" }}>
                 <div className="row g-0 ">
-                    <div className="col-md-2 mt-sm-2 align-self-center ">
-                        <img src={pic} className="img-fluid rounded-circle border mx-auto
-                    " alt="..." style={{ width: "85%" }} />
+                    <div className="col-md-2 text-center align-self-center">
+                        <img src={pic} className="img-fluid rounded-circle border" alt="..." id="image" />
                     </div>
                     <div className="col-9 col-md-8">
                         <div className="card-body">

@@ -21,8 +21,8 @@ function App() {
   const handleInputChange = (e) => { setStudentName(e.target.value) }
 
   return (
-    <div className="container my-5 bg-light rounded-2 shadow-lg" style={{ maxWidth: "640px" }} id="container">
-      <div className="row justify-content-center">
+    <div className="container bg-light border border-white rounded-3 shadow-lg overflow-scroll" id="container">
+      <div className="row justify-content-center" id="searchBar">
         <div className="col bg-light border-bottom" style={{ maxWidth: "640px" }}>
           <div className="form-floating">
             <div className="input-group my-1 border-botom" >
