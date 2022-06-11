@@ -1,0 +1,13 @@
+#root,
+html {
+  background-color: rgb(237, 238, 238);
+}
+#container {
+  font-family: "Raleway", sans-serif;
+}
+#icon:hover {
+  color: rgb(2, 2, 2);
+}
+#text {
+  margin-bottom: 0;
+}
