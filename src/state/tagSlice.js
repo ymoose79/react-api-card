@@ -24,10 +24,18 @@ const tagSlice = createSlice({
                 tags: action.payload.tags
             };
             state.push(newTag)
+
+        },
+        replaceTagArr: (state, action) => {
+            const tagId = action.payload.id
+            const index = state.findIndex(x => { return x.id === tagId })
+            console.log(index)
+            state[index].tags = action.payload.tags
+
         }
     }
 })
 
-export const { addTag } = tagSlice.actions;
+export const { addTag, replaceTagArr } = tagSlice.actions;
 
 export default tagSlice.reducer

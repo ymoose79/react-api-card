@@ -4,7 +4,7 @@ import TestScores from './TestScores';
 import AddTagSearch from './AddTagSearch';
 import ExpandGrades from './ExpandGrades';
 import { useDispatch } from 'react-redux';
-import { addTag } from '../state/tagSlice';
+import { addTag, replaceTagArr } from '../state/tagSlice';
 import { useSelector } from 'react-redux';
 
 
@@ -21,7 +21,6 @@ const StudentCard = ({ student }) => {
 
     // create/handle tags
     const [tagArray, setTagArray] = useState([])
-    const [tagObject, setTagObject] = useState({})
     const [tag, setTag] = useState("")
     const handleTag = (e) => {
         e.preventDefault()
@@ -31,19 +30,26 @@ const StudentCard = ({ student }) => {
     // feels like this is to clunky, should be sexier way to complete this process, but in the interest of time...
     const check = (e) => {
         e.preventDefault();
-        if (tag !== "") {
+        if (tag === "") {
+            return;
+        }
+        setTagArray([tag, ...tagArray])
+        if (tagArray < 1) {
             dispatch(addTag({
                 id: id,
                 tags: tag,
             }))
-            setTagArray([tag, ...tagArray])
-            setTagObject({ id, tagArray })
-            setTag("")
+        } else {
+            dispatch(replaceTagArr({
+                id: id,
+                tags: tagArray,
+            }))
         }
-        else {
-            setTag("")
-        }
+        console.log({ tagArray })
+        setTag("")
     }
+
+
     const statCheck = () => console.log(tagStore)
 
     return (
