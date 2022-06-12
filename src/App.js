@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react"
-// import SearchBar from "./component/SearchBar"
 import StudentCard from "./component/StudentCard"
-import "./component/CSS/app.css"
-
+import SearchBar from "./component/SearchBar"
 function App() {
 
   const [students, setstudents] = useState([])
   const [studentName, setStudentName] = useState("")
+
 
   useEffect(() => {
     async function fetchData() {
@@ -14,23 +13,18 @@ function App() {
       const data = await response.json(response)
       setstudents(data.students)
     }
-    fetchData();
+    fetchData()
     return;
   }, [])
+
+  const tagArray = ["tag1", "tag2"]
 
   const handleInputChange = (e) => { setStudentName(e.target.value) }
 
   return (
     <div className="container bg-light border border-white rounded-3 shadow-lg overflow-scroll" id="container">
-      <div className="row justify-content-center" id="searchBar">
-        <div className="col bg-light border-bottom" style={{ maxWidth: "640px" }}>
-          <div className="form-floating">
-            <div className="input-group my-1 border-botom" >
-              <input type="text" className="form-control-plaintext" placeholder='Search by name' value={studentName} onChange={handleInputChange} />
-            </div>
-          </div>
-        </div>
-      </div>
+      <SearchBar inputInfo={studentName} placeholder='Search by name' handleInputChange={handleInputChange} />
+      <SearchBar placeholder="Search by tag" />
       {students.filter((student) => {
         if (studentName === "") {
           return student
@@ -39,7 +33,7 @@ function App() {
           return student
         }
       }).map((student, i) => {
-        return <StudentCard student={student} key={i} />
+        return <StudentCard student={student} key={i} tagArray={tagArray} />
       })}
     </div >
   );

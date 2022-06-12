@@ -1,20 +1,32 @@
 import React, { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { faMinus } from '@fortawesome/free-solid-svg-icons'
+import CardBody from './CardBody';
+import TestScores from './TestScores';
+import AddTagSearch from './AddTagSearch';
+import ExpandGrades from './ExpandGrades';
 
-const StudentCard = (student) => {
-    const newStudent = student.student
-    const { grades, email, firstName, lastName, company, skill, pic, ...rest } = newStudent;
 
+const StudentCard = ({ student, tagArray }) => {
+    const { grades, email, firstName, lastName, company, skill, pic, id, ...rest } = student;
+    const bodyProps = { grades, firstName, lastName, email, company, skill }
+
+    // create/handle Open change
     const [isOpen, setIsOpen] = useState(false)
+    const handleGrades = () => { setIsOpen(!isOpen) }
 
-    let avg;
-    const calcAvg = function (grades) {
-        return avg = grades.reduce((a, b) => a + Number(b), 0) / grades.length
+    // create/handle tags
+    const [tagArr, setTagArr] = useState([])
+    const [tag, setTag] = useState("")
+    const handleTag = (e) => {
+        e.preventDefault()
+        setTag(e.target.value)
     }
-    calcAvg(grades)
 
+    // feels like this is to clunky, should be sexier way to complete this process, but in the interest of time...
+    const check = (e) => {
+        e.preventDefault();
+        tag !== "" ? setTagArr([tag, ...tagArr]) : setTag("");
+        setTag("")
+    }
 
     return (
         <div className='border-bottom'>
@@ -25,26 +37,14 @@ const StudentCard = (student) => {
                     </div>
                     <div className="col-9 col-md-8">
                         <div className="card-body">
-                            <h5 className="card-title display-6 fw-bold">{firstName} {lastName}</h5>
-                            <h6 className="card-text ms-md-2" id="text"><small className="text-muted">Email: {email}</small></h6>
-                            <h6 className="card-text ms-md-2" id="text"><small className="text-muted">Company: {company}</small></h6>
-                            <h6 className="card-text ms-md-2" id="text"><small className="text-muted">Skill: {skill}</small></h6>
-                            <h6 className="card-text ms-md-2" id="text"><small className="text-muted">Average: {avg}%</small></h6>
+                            <CardBody tagArray={tagArr} props={bodyProps} isOpen={isOpen} handleGrades={() => handleGrades} />
                         </div>
                     </div>
-                    <div className="col mt-1 justify-content-end">
-                        {!isOpen &&
-                            <button className='btn text-secondary mt-1 mt-md-2 ps-md-5' data-toggle="collapse" data-target="#showGrades" onClick={() => setIsOpen(!isOpen)}>  <FontAwesomeIcon icon={faPlus} size="2x" id="icon" /></button>}
-                        {isOpen &&
-                            <button className='btn text-secondary mt-1 mt-md-2 ps-md-5' data-toggle="collapse" data-target="#showGrades" onClick={() => setIsOpen(!isOpen)}>  <FontAwesomeIcon icon={faMinus} size="2x" id="icon" /></button>}
-                    </div>
+                    <ExpandGrades isOpen={isOpen} handleGrades={() => handleGrades} />
+                    <AddTagSearch isOpen={isOpen} placeholder={"Add a tag"} check={check} tag={tag} handleTag={handleTag} />
                 </div>
-                <div className="row justify-content-center">
-                    <div className='col-4 offset-1'>
-                        {isOpen && grades.map((grade, i) => {
-                            return <h6 className="card-text"><small className="text-muted">Test {i + 1}: {grade}</small></h6>
-                        })}
-                    </div>
+                <div className="row justiy-content-start">
+                    <TestScores isOpen={isOpen} grades={grades} />
                 </div>
             </div>
         </div>

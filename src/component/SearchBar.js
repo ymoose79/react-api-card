@@ -1,11 +1,20 @@
-// import React, {useState} from 'react'
+import React from 'react'
 
-// const SearchBar = () => {
-//     return (
-//         <div className="input-group">
-//             <input type="text" className="form-control" placeholder='Search by name' value={studentName} onChange={handleInputChange} />
-//         </div>
-//     )
-// }
+const SearchBar = ({ inputInfo, handleInputChange, placeholder, check }) => {
+    return (
+        <div className="row justify-content-center" id="searchBar">
+            <form onSubmit={check}>
+                <div className="col bg-light border-bottom mt-1" style={{ maxWidth: "640px" }}>
+                    <input type="text"
+                        className="form-control-plaintext"
+                        placeholder={placeholder}
+                        value={inputInfo}
+                        onChange={handleInputChange}
+                    />
+                </div>
+            </form>
+        </div>
+    )
+}
 
-// export default SearchBar
+export default SearchBar

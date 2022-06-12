@@ -7,6 +7,14 @@
 #text {
   margin-bottom: 0;
 }
+#tags {
+  color: black;
+  background-color: rgb(216, 218, 218);
+}
+
+#plusMinus {
+  color: rgb(145, 146, 146);
+}
 
 @media screen and (min-width: 768px) {
   #image {
