@@ -5,7 +5,7 @@ import AddTagSearch from './AddTagSearch';
 import ExpandGrades from './ExpandGrades';
 
 
-const StudentCard = ({ student, tagArray }) => {
+const StudentCard = ({ student }) => {
     const { grades, email, firstName, lastName, company, skill, pic, id, ...rest } = student;
     const bodyProps = { grades, firstName, lastName, email, company, skill }
 
@@ -14,7 +14,8 @@ const StudentCard = ({ student, tagArray }) => {
     const handleGrades = () => { setIsOpen(!isOpen) }
 
     // create/handle tags
-    const [tagArr, setTagArr] = useState([])
+    const [tagArray, setTagArray] = useState([])
+    const [tagObject, setTagObject] = useState({})
     const [tag, setTag] = useState("")
     const handleTag = (e) => {
         e.preventDefault()
@@ -24,7 +25,9 @@ const StudentCard = ({ student, tagArray }) => {
     // feels like this is to clunky, should be sexier way to complete this process, but in the interest of time...
     const check = (e) => {
         e.preventDefault();
-        tag !== "" ? setTagArr([tag, ...tagArr]) : setTag("");
+        const tagId = { id }
+        tag !== "" ? setTagArray([tag, ...tagArray]) : setTag("");
+        setTagObject({ tagId, tagArray })
         setTag("")
     }
 
@@ -48,7 +51,7 @@ const StudentCard = ({ student, tagArray }) => {
                     <div className='col-md-6 offset-md-2'>
                         <TestScores isOpen={isOpen} grades={grades} />
                         <div className='container'>
-                            {tagArray.length > 0 && tagArr.map((tag, i) => {
+                            {tagArray.length > 0 && tagArray.map((tag, i) => {
                                 return <button className='btn btn-secondary border-light' id="tags">{tag}</button>
                             })}
                         </div>

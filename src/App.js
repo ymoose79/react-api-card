@@ -17,8 +17,6 @@ function App() {
     return;
   }, [])
 
-  const tagArray = ["tag1", "tag2"]
-
   const handleInputChange = (e) => { setStudentName(e.target.value) }
 
   return (
@@ -32,8 +30,8 @@ function App() {
           student.firstName.toLowerCase().includes(studentName.toLowerCase())) {
           return student
         }
-      }).map((student, i) => {
-        return <StudentCard student={student} key={i} tagArray={tagArray} />
+      }).map((student) => {
+        return <StudentCard student={student} key={student.id} />
       })}
     </div >
   );
