@@ -37,17 +37,26 @@ const StudentCard = ({ student, tagArray }) => {
                     </div>
                     <div className="col-9 col-md-8">
                         <div className="card-body">
-                            <CardBody tagArray={tagArr} props={bodyProps} isOpen={isOpen} handleGrades={() => handleGrades} />
+                            <CardBody props={bodyProps} />
                         </div>
                     </div>
-                    <ExpandGrades isOpen={isOpen} handleGrades={() => handleGrades} />
-                    <AddTagSearch isOpen={isOpen} placeholder={"Add a tag"} check={check} tag={tag} handleTag={handleTag} />
+                    <div className='col-2'>
+                        <ExpandGrades isOpen={isOpen} handleGrades={() => handleGrades} />
+                    </div>
                 </div>
-                <div className="row justiy-content-start">
-                    <TestScores isOpen={isOpen} grades={grades} />
+                <div className='row'>
+                    <div className='col-md-6 offset-md-2'>
+                        <TestScores isOpen={isOpen} grades={grades} />
+                        <div className='container'>
+                            {tagArray.length > 0 && tagArr.map((tag, i) => {
+                                return <button className='btn btn-secondary border-light' id="tags">{tag}</button>
+                            })}
+                        </div>
+                        <AddTagSearch isOpen={isOpen} placeholder={"Add a tag"} check={check} tag={tag} handleTag={handleTag} />
+                    </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
