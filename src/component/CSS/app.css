@@ -1,3 +1,8 @@
+#root,
+html {
+  background-color: rgb(237, 238, 238);
+}
+
 #container {
   font-family: "Raleway", sans-serif;
 }
@@ -30,10 +35,6 @@ input[type="text"] {
     max-height: 70vh;
     margin-top: 120px;
   }
-  #root,
-  html {
-    background-color: rgb(237, 238, 238);
-  }
 }
 
 @media screen and (max-width: 768px) {
@@ -41,9 +42,5 @@ input[type="text"] {
     margin-top: 1em;
     width: 35vw;
     text-align: center;
-  }
-  html,
-  #root {
-    background-color: rgb(255, 255, 255);
   }
 }

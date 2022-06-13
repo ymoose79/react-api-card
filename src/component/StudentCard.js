@@ -54,18 +54,18 @@ const StudentCard = ({ student }) => {
         setTag("")
     }
 
-    // -------->  ***** the commented-out button below will show you my store.  Couldn't figure out why it is a "beat" behind.  I left in as is in case someone is going through my code.
+    // -------->  ***** the commented-out button below will the store (via redux toolkit) where I created an object with ID & tag key: values..  Couldn't figure out why it is a "beat" behind or how to search both name/tag simultaneously.  I left in as is in-case someone is going through my code and wanted to check that a object is with ID & tag key: values. 
     const statCheck = () => console.log(tagStore)
 
     return (
         <div className='border-bottom'>
             {/* <button onClick={statCheck}>button</button> */}
-            <div className="card mx-auto bg-light border-light" style={{ maxWidth: "640px" }}>
+            <div className="card bg-light border-light">
                 <div className="row g-0 ">
                     <div className="col-md-2 text-center align-self-center">
                         <img src={pic} className="img-fluid rounded-circle border" alt="..." id="image" />
                     </div>
-                    <div className="col-9 col-md-8">
+                    <div className="col-10 col-md-8">
                         <div className="card-body">
                             <CardBody props={bodyProps} />
                         </div>
