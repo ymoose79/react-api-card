@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# Frontend Assessment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Framework
+    - React:  
+        I used React & redux. I've been using React exclusivly for the past month and a bit (majority of jobs use React), so it's fresher in my mind. However I've used and prefer Svelte.  Had it been a little fresher in my mind I would have gone that route, but I set myself up on a timeline and I wanted to get this knocked out as quick as possible.
 
-## Available Scripts
+## Dependencies
+    - Bootstrap
+    - Font Awesome
+    - Redux toolkit
 
-In the project directory, you can run:
+## Time
+    - I spent between 2-3 days on this project.  I wanted to be done by Sunday night, however I took the morning to clean up the code a little bit more, make some minor UI adjustments and do this read me.
+
+## Struggles
+    - Tag Search:
+        This threw me.  I figured at some point I was going to need to add a store to access this data.  It took me a while to figure out the process (thank you toolkit) and from there it was only a matter of time until I figured out the logic.  I wound up handling some of that on the front end which wound up cluttering up my StudentCard folder. 
+    
+    - StudentCard:
+         If I could be quick about it, I would try and throw that logic into a helper file than import functions to clean up my code.  But I'm sticking to the timeline I set for myself and I want to get this in.
+
+    - SearchBars:
+        I noticed the sticky functionality late, wound up kicking that can down the road and for the life of me I couldn't figure out a quick fix.  I've got the scroll bar attached to the container that holds all UI components which is where I believe the heart of the matter is.  
+
+    - App.css file
+        The place where I'm doing my mentorship looks at this as cheating, or at the very least, sloppy code. I'm not entirely sure why, but I use the CSS sheet to help override some of the bootstrap baked in styling.  I know there's a way to do this using Sass, I believe.  I explored that avenue for an hour that moved forward with what I know.  
 
 ### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
