@@ -75,7 +75,7 @@ const StudentCard = ({ student }) => {
                     </div>
                 </div>
                 <div className='row'>
-                    <div className='col-md-6 offset-md-2'>
+                    <div className='col-md-4 offset-md-2'>
                         <TestScores isOpen={isOpen} grades={grades} />
                         <div className='container'>
                             {tagArray.length > 0 && tagArray.map((tag, i) => {
