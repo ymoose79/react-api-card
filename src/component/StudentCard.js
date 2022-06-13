@@ -10,8 +10,13 @@ import { useSelector } from 'react-redux';
 
 const StudentCard = ({ student }) => {
     const { grades, email, firstName, lastName, company, skill, pic, id, ...rest } = student;
-    const bodyProps = { grades, firstName, lastName, email, company, skill }
+    const fName = firstName.toUpperCase();
+    const lName = lastName.toUpperCase();
 
+    // packaged up props to send in CardBody component
+    const bodyProps = { grades, fName, lName, email, company, skill }
+
+    // set up store via redux toolki
     const dispatch = useDispatch()
     const tagStore = useSelector((state) => state.tags)
 
@@ -19,16 +24,17 @@ const StudentCard = ({ student }) => {
     const [isOpen, setIsOpen] = useState(false)
     const handleGrades = () => { setIsOpen(!isOpen) }
 
+    // feels like this is too clunky, should be sexier way to complete this process, but in the interest of time...
     // create/handle tags
     const [tagArray, setTagArray] = useState([])
     const [tag, setTag] = useState("")
+
     const handleTag = (e) => {
         e.preventDefault()
         setTag(e.target.value)
     }
 
-    // feels like this is to clunky, should be sexier way to complete this process, but in the interest of time...
-    const check = (e) => {
+    const handleTagSubmit = (e) => {
         e.preventDefault();
         if (tag === "") {
             return;
@@ -45,16 +51,15 @@ const StudentCard = ({ student }) => {
                 tags: tagArray,
             }))
         }
-        console.log({ tagArray })
         setTag("")
     }
 
-
+    // -------->  ***** the commented-out button below will show you my store.  Couldn't figure out why it is a "beat" behind.  I left in as is in case someone is going through my code.
     const statCheck = () => console.log(tagStore)
 
     return (
         <div className='border-bottom'>
-            <button onClick={statCheck}>button</button>
+            {/* <button onClick={statCheck}>button</button> */}
             <div className="card mx-auto bg-light border-light" style={{ maxWidth: "640px" }}>
                 <div className="row g-0 ">
                     <div className="col-md-2 text-center align-self-center">
@@ -77,7 +82,7 @@ const StudentCard = ({ student }) => {
                                 return <button className='btn btn-secondary border-light' id="tags">{tag}</button>
                             })}
                         </div>
-                        <AddTagSearch isOpen={isOpen} placeholder={"Add a tag"} check={check} tag={tag} handleTag={handleTag} />
+                        <AddTagSearch isOpen={isOpen} placeholder={"Add a tag"} handleTagSubmit={handleTagSubmit} tag={tag} handleTag={handleTag} />
                     </div>
                 </div>
             </div>

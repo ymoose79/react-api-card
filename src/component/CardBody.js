@@ -1,7 +1,7 @@
 import React from 'react'
 
 const CardBody = ({ props }) => {
-    const { firstName, lastName, email, company, skill, grades } = props
+    const { fName, lName, email, company, skill, grades } = props
 
     let avg;
     const calcAvg = function (grades) {
@@ -11,7 +11,7 @@ const CardBody = ({ props }) => {
 
     return (
         <>
-            <h5 className="card-title display-6 fw-bold">{firstName} {lastName}</h5>
+            <h1 className="card-title fw-bold">{fName} {lName}</h1>
             <h6 className="card-text ms-md-2" id="text"><small >Email: {email}</small></h6>
             <h6 className="card-text ms-md-2" id="text"><small >Company: {company}</small></h6>
             <h6 className="card-text ms-md-2" id="text"><small >Skill: {skill}</small></h6>

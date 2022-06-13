@@ -1,10 +1,10 @@
 import React from 'react'
 
-const AddTag = ({ placeholder, isOpen, check, tag, handleTag }) => {
+const AddTag = ({ placeholder, isOpen, handleTagSubmit, tag, handleTag }) => {
     if (!isOpen)
         return (
             <div className="container" id="searchBar">
-                <form onSubmit={check} className="border-bottom border-2 mb-3">
+                <form onSubmit={handleTagSubmit} className="border-bottom border-2 mb-3">
                     <input type="text"
                         className="form-control-plaintext"
                         placeholder={placeholder}
