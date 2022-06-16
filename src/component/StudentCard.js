@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 
 
 const StudentCard = ({ student }) => {
-    const { grades, email, firstName, lastName, company, skill, pic, id, ...rest } = student;
+    const { grades, email, firstName, lastName, company, skill, pic, id } = student;
     const fName = firstName.toUpperCase();
     const lName = lastName.toUpperCase();
 
@@ -24,7 +24,6 @@ const StudentCard = ({ student }) => {
     const [isOpen, setIsOpen] = useState(false)
     const handleGrades = () => { setIsOpen(!isOpen) }
 
-    // feels like this is too clunky, should be sexier way to complete this process, but in the interest of time...
     // create/handle tags
     const [tagArray, setTagArray] = useState([])
     const [tag, setTag] = useState("")
@@ -54,11 +53,11 @@ const StudentCard = ({ student }) => {
         setTag("")
     }
 
-    // -------->  ***** the commented-out button below will the store (via redux toolkit) where I created an object with ID & tag key: values..  Couldn't figure out why it is a "beat" behind or how to search both name/tag simultaneously.  I left in as is in-case someone is going through my code and wanted to check that a object is with ID & tag key: values. 
-    const statCheck = () => console.log(tagStore)
+    // check store: linked w/ button below
+    // const statCheck = () => console.log(tagStore)
 
     return (
-        <div className='border-bottom'>
+        <div className='border-bottom' key={id}>
             {/* <button onClick={statCheck}>button</button> */}
             <div className="card bg-light border-light">
                 <div className="row g-0 ">

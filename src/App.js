@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="container bg-light border border-white rounded-3 shadow-lg overflow-scroll" id="container">
       <SearchBar inputInfo={studentName} placeholder='Search by name' handleInputChange={handleInputChange} />
-      <SearchBar placeholder="Search by tag" />
+      {/* <SearchBar placeholder="Search by tag" /> */}
       {students.filter((student) => {
         if (studentName === "") {
           return student
