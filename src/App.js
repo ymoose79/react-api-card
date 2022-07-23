@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import StudentCard from "./component/StudentCard"
 import SearchBar from "./component/SearchBar"
 function App() {
 
   const [students, setstudents] = useState([])
   const [studentName, setStudentName] = useState("")
-
+  const firstRenderRef = useRef(true);
 
   useEffect(() => {
+    if (firstRenderRef.current) {
+      firstRenderRef.current = false;
+      return;
+    }
     async function fetchData() {
       const response = await fetch(`https://api.hatchways.io/assessment/students`)
       const data = await response.json(response)
