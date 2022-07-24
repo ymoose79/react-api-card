@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import CardBody from './CardBody';
 import TestScores from './TestScores';
-import AddTagSearch from './AddTagInput';
+import AddTagInput from './AddTagInput';
 import ExpandGrades from './ExpandGrades';
 import { useSelector } from 'react-redux';
 
@@ -13,24 +13,24 @@ const StudentCard = ({ student }) => {
     // packaged up props to send in CardBody component
     const bodyProps = { grades, fName, lName, email, company, skill }
 
-    // set up store via redux toolki
+    // convert store to corresponding tag list
     const tagStore = useSelector((state) => state.tags)
+    const checkTags = tagStore.filter(tagIds => tagIds.id === id)
+    const cardTagsArray = checkTags[0] ? checkTags[0].tags : [];
+
+
 
     // create/handle Open change
     const [isOpen, setIsOpen] = useState(false)
     const handleGrades = () => { setIsOpen(!isOpen) }
 
+    const [tagListArray, settagListArray] = useState(cardTagsArray)
 
-    const [testTagArray, settestTagArray] = useState([])
+    // check Button logic
+    const statCheck = () => tagListArray ? console.log(cardTagsArray) : console.log('there are no tags');
 
-
-    const checkTags = tagStore.filter(tagIds => tagIds.id === id)
-    const storetagArray = checkTags[0];
-
-    const statCheck = () => testTagArray ? console.log(testTagArray) : console.log('there are no tags');
-
-    const handleTagArrayUpdate = (tagList) => {
-        settestTagArray([...testTagArray, tagList])
+    const handleTagArrayUpdate = (tag) => {
+        settagListArray([...tagListArray, tag])
     }
 
     return (
@@ -54,11 +54,11 @@ const StudentCard = ({ student }) => {
                     <div className='col-md-4 offset-md-2'>
                         <TestScores isOpen={isOpen} grades={grades} />
                         <div className='container'>
-                            {testTagArray?.length > 0 && testTagArray.map((tag, i) => {
+                            {tagListArray?.length > 0 && tagListArray.map((tag, i) => {
                                 return <button className='btn btn-secondary border-light' id="tags">{tag}</button>
                             })}
                         </div>
-                        <AddTagSearch isOpen={isOpen} placeholder={"Add a tag"} id={id} handleTagArrayUpdate={handleTagArrayUpdate} />
+                        <AddTagInput isOpen={isOpen} placeholder={"Add a tag"} id={id} handleTagArrayUpdate={handleTagArrayUpdate} />
                     </div>
                 </div>
             </div>
