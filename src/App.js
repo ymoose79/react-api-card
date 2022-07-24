@@ -1,11 +1,17 @@
 import React, { useState, useEffect, useRef } from "react"
 import StudentCard from "./component/StudentCard"
 import SearchBar from "./component/SearchBar"
+import { useSelector } from 'react-redux';
+
 function App() {
 
   const [students, setstudents] = useState([])
   const [studentName, setStudentName] = useState("")
   const firstRenderRef = useRef(true);
+
+  const tagStore = useSelector((state) => state.tags)
+  const checkStore = () => console.log(tagStore);
+
 
   useEffect(() => {
     if (firstRenderRef.current) {
@@ -25,6 +31,7 @@ function App() {
 
   return (
     <div className="container bg-light border border-white rounded-3 shadow-lg overflow-scroll" id="container">
+      <button onClick={checkStore}>checkStore</button>
       <SearchBar inputInfo={studentName} placeholder='Search by name' handleInputChange={handleInputChange} />
       {/* <SearchBar placeholder="Search by tag" /> */}
       {students.filter((student) => {
