@@ -19,10 +19,14 @@ function App() {
       return;
     }
     async function fetchData() {
-      const response = await fetch(`https://api.hatchways.io/assessment/students`)
-      const data = await response.json(response)
-      setstudents(data.students)
-    }
+      try {
+        const response = await fetch(`https://api.hatchways.io/assessment/students`)
+        const data = await response.json(response)
+        setstudents(data.students)
+      } catch (error) {
+        console.error(error)
+      };
+    };
     fetchData()
     return;
   }, [])
