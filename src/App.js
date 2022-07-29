@@ -13,6 +13,7 @@ function App() {
       console.log('first')
       return;
     }
+    firstRenderRef.current = !firstRenderRef.current;
     async function fetchData() {
       try {
         const response = await fetch(`https://api.hatchways.io/assessment/students`)
