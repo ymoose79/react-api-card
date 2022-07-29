@@ -6,21 +6,21 @@ const tagSlice = createSlice({
     reducers: {
         // state is current data, action has new data
         addTag: (state, action) => {
-            const newTag = {
-                id: action.payload.id,
-                tags: action.payload.tags
-            };
-            state.push(newTag)
-
-        },
-        replaceTagArr: (state, action) => {
             const tagId = action.payload.id
             const index = state.findIndex(x => { return x.id === tagId })
-            state[index].tags = action.payload.tags
+            if (index === -1) {
+                const newTag = {
+                    id: action.payload.id,
+                    tags: [action.payload.tags]
+                };
+                state.push(newTag)
+            } else {
+                state[index].tags.push(action.payload.tags)
+            }
         },
     }
 })
 
-export const { addTag, replaceTagArr } = tagSlice.actions;
+export const { addTag } = tagSlice.actions;
 
 export default tagSlice.reducer

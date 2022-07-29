@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import CardBody from './CardBody';
 import TestScores from './TestScores';
-import AddTagSearch from './AddTagSearch';
+import AddTagInput from './AddTagInput';
 import ExpandGrades from './ExpandGrades';
-import { useDispatch } from 'react-redux';
-import { addTag, replaceTagArr } from '../state/tagSlice';
 import { useSelector } from 'react-redux';
 
 
@@ -12,53 +10,32 @@ const StudentCard = ({ student }) => {
     const { grades, email, firstName, lastName, company, skill, pic, id } = student;
     const fName = firstName.toUpperCase();
     const lName = lastName.toUpperCase();
-
     // packaged up props to send in CardBody component
     const bodyProps = { grades, fName, lName, email, company, skill }
 
-    // set up store via redux toolki
-    const dispatch = useDispatch()
+    // convert store to corresponding tag list
     const tagStore = useSelector((state) => state.tags)
+    const checkTags = tagStore.filter(tagIds => tagIds.id === id)
+    const cardTagsArray = checkTags[0] ? checkTags[0].tags : [];
+
+
 
     // create/handle Open change
     const [isOpen, setIsOpen] = useState(false)
     const handleGrades = () => { setIsOpen(!isOpen) }
 
-    // create/handle tags
-    const [tagArray, setTagArray] = useState([])
-    const [tag, setTag] = useState("")
+    const [tagListArray, settagListArray] = useState(cardTagsArray)
 
-    const handleTag = (e) => {
-        e.preventDefault()
-        setTag(e.target.value)
+    // check Button logic
+    const statCheck = () => tagListArray ? console.log(cardTagsArray) : console.log('there are no tags');
+
+    const handleTagArrayUpdate = (tag) => {
+        settagListArray([...tagListArray, tag])
     }
-
-    const handleTagSubmit = (e) => {
-        e.preventDefault();
-        if (tag === "") {
-            return;
-        }
-        setTagArray([tag, ...tagArray])
-        if (tagArray < 1) {
-            dispatch(addTag({
-                id: id,
-                tags: tag,
-            }))
-        } else {
-            dispatch(replaceTagArr({
-                id: id,
-                tags: tagArray,
-            }))
-        }
-        setTag("")
-    }
-
-    // check store: linked w/ button below
-    // const statCheck = () => console.log(tagStore)
 
     return (
         <div className='border-bottom' key={id}>
-            {/* <button onClick={statCheck}>button</button> */}
+            <button onClick={statCheck}>button</button>
             <div className="card bg-light border-light">
                 <div className="row g-0 ">
                     <div className="col-md-2 text-center align-self-center">
@@ -77,11 +54,11 @@ const StudentCard = ({ student }) => {
                     <div className='col-md-4 offset-md-2'>
                         <TestScores isOpen={isOpen} grades={grades} />
                         <div className='container'>
-                            {tagArray.length > 0 && tagArray.map((tag, i) => {
+                            {tagListArray?.length > 0 && tagListArray.map((tag, i) => {
                                 return <button className='btn btn-secondary border-light' id="tags">{tag}</button>
                             })}
                         </div>
-                        <AddTagSearch isOpen={isOpen} placeholder={"Add a tag"} handleTagSubmit={handleTagSubmit} tag={tag} handleTag={handleTag} />
+                        <AddTagInput isOpen={isOpen} placeholder={"Add a tag"} id={id} handleTagArrayUpdate={handleTagArrayUpdate} />
                     </div>
                 </div>
             </div>
