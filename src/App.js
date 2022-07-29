@@ -5,10 +5,16 @@ function App() {
 
   const [students, setstudents] = useState([])
   const [studentName, setStudentName] = useState("")
+  const firstRenderRef = useRef(false);
 
   useEffect(() => {
-
+    if (firstRenderRef.current) {
+      firstRenderRef.current = !firstRenderRef.current;
+      console.log('first')
+      return;
+    }
     async function fetchData() {
+      firstRenderRef.current = !firstRenderRef.current;
       try {
         const response = await fetch(`https://api.hatchways.io/assessment/students`)
         const data = await response.json(response)
