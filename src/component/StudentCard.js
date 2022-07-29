@@ -26,16 +26,12 @@ const StudentCard = ({ student }) => {
 
     const [tagListArray, settagListArray] = useState(cardTagsArray)
 
-    // check Button logic
-    const statCheck = () => tagListArray ? console.log(cardTagsArray) : console.log('there are no tags');
-
     const handleTagArrayUpdate = (tag) => {
         settagListArray([...tagListArray, tag])
     }
 
     return (
         <div className='border-bottom' key={id}>
-            <button onClick={statCheck}>button</button>
             <div className="card bg-light border-light">
                 <div className="row g-0 ">
                     <div className="col-md-2 text-center align-self-center">
@@ -55,7 +51,7 @@ const StudentCard = ({ student }) => {
                         <TestScores isOpen={isOpen} grades={grades} />
                         <div className='container'>
                             {tagListArray?.length > 0 && tagListArray.map((tag, i) => {
-                                return <button className='btn btn-secondary border-light' id="tags">{tag}</button>
+                                return <button className='btn btn-secondary border-light' id="tags" key={i}>{tag}</button>
                             })}
                         </div>
                         <AddTagInput isOpen={isOpen} placeholder={"Add a tag"} id={id} handleTagArrayUpdate={handleTagArrayUpdate} />
