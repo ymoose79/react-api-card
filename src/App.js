@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     if (firstRenderRef.current) {
-      firstRenderRef.current = false;
+      // firstRenderRef.current = false;
       return;
     }
     async function fetchData() {
